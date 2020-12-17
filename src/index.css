@@ -1,13 +1,94 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* PRIMARY COLORS
+
+---- BACKGROUNDS ---- :
+background: #fffefc
+primary: #FF5757
+
+background secondary: #FAF1E5
+background secondary-light: #FEF9F3
+
+background supporting: #C7E2FD
+background supporting-light: #DAEAFB
+
+---- FONT ---- :
+black: #000000;
+grey: #B3B3B3
+red: #FE5656
+white: #FFFFFF
+
+*/
+
+*,
+*::after,
+*::before { 
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  /*This defines what 1rem is | 1rem = 10px (10px/16px = 62.5%) */
+  font-size: 62.5%;  
 }
+
+body {
+  box-sizing: border-box;
+  font-family: 'Mulish', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  font-size: 1.6rem;
+  background:#ffffff;
+}
+
+input[type=text] {
+  font-family: 'Mulish', sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* BUTTONS */
+
+.button-primary__big {
+  background: #FE5656;
+  color: #FFFFFF;
+  padding: 1.7em 3.5em;
+  font-weight: 300;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  letter-spacing: 0.05em;
+}
+
+.button-primary {
+  background: #FE5656;
+  color: #FFFFFF;
+  padding: 1.3em 3em;
+  font-weight: 300;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  letter-spacing: 0.05em;
+}
+
+/* LAYOUT */
+.container {
+  width: 90%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+

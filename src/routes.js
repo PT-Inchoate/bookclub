@@ -12,9 +12,11 @@ class Routes extends Component {
 
     render() {
         return (
-            <Switch>
-                <Route exact path="/" component={App} />
-            </Switch>
+            <div className="container">
+                <Switch>
+                    <Route exact path="/" component={App} />
+                </Switch>
+            </div>
         )
     }
 }
