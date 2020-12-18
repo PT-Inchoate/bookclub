@@ -34,24 +34,6 @@
 
 }
 
-input[type = "text"],
-input[type = "email"],
-input[type = "password"] {
-    display: block;
-    margin: 10px auto;
-    background: #ffffff;
-    border: 1px solid #dedfe0;
-    padding: 14px 10px;
-    width: 320px;
-    outline: none;
-    color: #37352f99;
-}
-
-label {
-    display: flex;
-    align-items: center;
-}
-
 .Auth-form__forgot {
     color: #abaeb1;
     font-weight: 300;
