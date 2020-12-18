@@ -1,50 +1,50 @@
 {
   "name": "bookclub",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "build-client": "webpack",
-    "build-client-watch": "webpack -w",
-    "server": "nodemon server/index.js",
-    "client": "cd client && npm run start",
-    "start-dev": "webpack -w & nodemon server/index.js",
-    "seed": "node script/seed.js",
-    "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js"
-  },
-  "repository": {
-    "type": "git"
-  },
-  "author": "PT-Inchoate",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^1.17.5",
-    "concurrently": "^3.6.0"
-  },
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
-    "connect-session-sequelize": "^4.1.0",
-    "date-fns": "^1.29.0",
-    "express": "^4.16.3",
-    "express-session": "^1.15.1",
-    "history": "^4.7.2",
-    "morgan": "^1.9.0",
-    "passport": "^0.3.2",
-    "path": "^0.12.7",
-    "pg": "^7.4.3",
-    "pg-hstore": "^2.3.2",
-    "react": "^16.8.6",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "firebase": "^8.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-scripts": "4.0.0",
+    "react-test-renderer": "^16.12.0",
     "redux": "^4.0.0",
-    "redux-devtools-extension": "^2.13.4",
-    "redux-logger": "^3.0.6",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-logger": "^2.8.1",
+    "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
-    "sequelize": "^5.3.1",
-    "chai": "^3.5.0",
-    "mocha": "^3.3.0",
-    "supertest": "^3.0.0"
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "proxy": "http://localhost:5000"
   }
 }
