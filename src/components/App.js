@@ -1,24 +1,31 @@
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from '../store';
+
+import Auth from './Auth/Auth';
+import Dashboard from './Dashboard/Dashboard';
+
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <div className="App-Sidebar">Sidebar</div>
-      <div className="App-Dashboard">Dashboard
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+class App extends Component {
 
-        <button className="button-primary">learn more</button>
-        <button className="button-primary__big">learn more</button>
-        
-        <p style={{color: "rgb(244,89,89)"}}>
-          Bookclub
-        </p>
-      </header>
-      </div>
-    </div>
-  );
+    render() {
+        return (
+            <Provider store={store}>
+                <BrowserRouter>
+                    <div className="container">
+                        <Switch>
+                            <Route exact path="/" component={Dashboard} />
+                            <Route exact path="/login" component={Auth} />
+                            <Route exact path="/signup" component={Auth} /> 
+                        </Switch>
+                    </div>
+                </BrowserRouter>
+            </Provider>
+        )
+    }
 }
 
-export default App;
+export default App

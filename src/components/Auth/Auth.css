@@ -1,0 +1,40 @@
+.Auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 25%;
+    margin: 0 auto;
+    padding: 5em 0;
+}
+
+@media (max-width: 975px) {
+    .Auth-container  {
+      width: 100%;
+    }
+}
+
+.Auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0 5rem; */
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.Auth-form__title {
+
+}
+
+.Auth-form__social-container {
+
+}
+
+.Auth-form__forgot {
+    color: #abaeb1;
+    font-weight: 300;
+}
