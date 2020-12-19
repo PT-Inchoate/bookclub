@@ -14,8 +14,9 @@ background supporting-light: #DAEAFB
 
 ---- FONT ---- :
 black: #000000;
-grey: #B3B3B3
-red: #FE5656
+grey: #abaeb1
+light-grey: #d0d2d4
+dark-red: #f35151
 white: #FFFFFF
 
 */
@@ -54,15 +55,79 @@ input[type = "password"] {
     background: #ffffff;
     border: 1px solid #dedfe0;
     padding: 14px 10px;
-    width: 320px;
+    width: 100%;
     outline: none;
     color: #37352f99;
+}
+
+input[type="checkbox"] {
+  background-color: initial;
+  cursor: default;
+  -webkit-appearance: checkbox;
+  box-sizing: border-box;
+  margin: 3px 3px 3px 4px;
+  padding: initial;
+  border: initial;
 }
 
 label {
     display: flex;
     align-items: center;
 }
+
+label input[type = "checkbox"] {
+  display: none; /* hide the default checkbox */
+}
+
+/* style the artificial checkbox */
+label span {
+    height: 13px;
+    width: 13px;
+    border: 1px solid #abaeb1;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    float: left;
+    left: 7.5%;
+}
+
+.rmb {
+    position: absolute;
+    margin-left: 1.5em;
+    margin-top: 0px;
+    color: #08203D;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 414px) {
+  label span {
+    left: 0;
+  }
+
+  .rmb {
+    position: relative;
+    margin-left: 0.5em;
+  }
+}
+
+[type=checkbox]:checked + span:before {/* <-- style its checked state */
+    content: "";
+    background-color: transparent;
+    position: absolute;
+    right: 3px;
+    top: -2px;
+    width: 5px;
+    border-bottom: 3px solid #FE5656;
+    height: 11px;
+    border-right: 3px solid #FE5656;
+    
+    /* rotate the mirrored L to make it a checkbox */
+    transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+}  
 
 img {
   max-width: 100%;

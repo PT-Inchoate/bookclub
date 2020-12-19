@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import md5 from 'md5';
 
 import firebase from '../../firebase';
-
+import image from '../../Assets/login_image.svg';
 import './Auth.css';
 
 export class Auth extends Component {
@@ -154,6 +154,16 @@ export class Auth extends Component {
 
         return (
             <div className="Auth-container">
+                {/* Left side of the auth page */}
+                <div className="Auth-image-container">
+                    <div className="Auth-image">
+                        <img src={image} alt="illustration intro"/>
+                    </div>
+                    <div className="Auth-polygon"></div>
+                </div>
+
+                {/* Auth form */}
+                <div className="Auth-form-container">
                 <form className="Auth-form" onSubmit={this.handleSubmit}>
                     <h1 className="Auth-form__title">{pageTitle}</h1>
                     <div className="Auth-form__social-container">
@@ -161,7 +171,7 @@ export class Auth extends Component {
                         <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
                         <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
                     </div>
-                    <span>{descriptionSubtext}</span>
+                    <h2 className="Auth-form__subtitle"><span>{descriptionSubtext}</span></h2>
  
                     {pageTitle !== 'Login' && (
                         <input
@@ -202,16 +212,24 @@ export class Auth extends Component {
                     {/* {firebaseError && <p className="Auth-error">{firebaseError}</p>} */}
 
                     <div className="Auth-checkbox">
+                        <label>
+                            <input type="checkbox"/>
+                            <span></span>
+                            <small className="rmb">Remember me</small>
+                        </label>
+                        
                         {pageTitle === 'Login' && (
                             <Link to="/forgot" className="Auth-form__forgot">Forgot password?</Link>
                         )}    
                     </div>
 
                     <button 
-                        className="button-primary Auth-btn" 
+                        className="button-primary Auth-form__btn" 
                     >
                         {pageTitle}
                     </button>
+
+                    <hr className="Auth-devider"/>
 
                 </form>
 
@@ -221,7 +239,8 @@ export class Auth extends Component {
                         onClick={() => (prevLogin => !prevLogin)}
                     >{descriptionText}<span>{linkTitle}</span></Link>
                 </div>
-                
+                </div>
+
             </div>
         )
     }
