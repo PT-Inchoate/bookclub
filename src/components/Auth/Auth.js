@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import md5 from 'md5';
 
 import firebase from '../../firebase';
 
@@ -12,7 +13,9 @@ export class Auth extends Component {
         password: '',
         errors: {},
         loading: false,
-        prevLogin: true
+        prevLogin: true,
+        firebaseError: null,
+        usersRef: firebase.database().ref('users')
     }
 
     isFormValid = ({ email, password }) => email && password;
@@ -23,6 +26,8 @@ export class Auth extends Component {
 
     //checking values that were set on state from login form
     handleInputErrors = values => {
+        let isError = false;
+
         // Email Errors
         if (!values.email) {
             this.setState(prevState => ({
@@ -30,12 +35,14 @@ export class Auth extends Component {
                     email: 'Email required'      
                 }
             }))
+            isError = true;
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
             this.setState(prevState => ({
                 errors: {                   
                     email: 'Invalid email address'      
                 }
             }))
+            isError = true;
         }
         // Password Errors
         if (!values.password) {
@@ -44,6 +51,7 @@ export class Auth extends Component {
                     password: 'Password required'   
                 }
             }))
+            isError = true;
         } else if (values.password.length < 6) {
             this.setState(prevState => ({
                 errors: {
@@ -51,6 +59,7 @@ export class Auth extends Component {
                     password: 'Password must be at least 6 characters'      
                 }
             }))
+            isError = true;
         }
         else {
             this.setState(prevState => ({
@@ -60,50 +69,113 @@ export class Auth extends Component {
                 }
             }))
         }
+
+        if (!this.state.pageTitle !== 'Login') {
+            if (!values.username) {
+                this.setState(prevState => ({
+                    errors: {                   
+                        username: 'Username required'   
+                    }
+                }))
+                isError = true;
+            }
+        }
+
+        console.log('isError', isError)
+        return isError;
       }
 
     handleSubmit = event => {
+        const { errors, pageTitle, username } = this.state;
         event.preventDefault();
-        this.handleInputErrors(this.state);
-        console.log('this.setState ', this.state)
-
-        if(this.isFormValid(this.state)) {
-            this.setState({ errors: [], loading: true });
-            firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);   
+        const validationErrors = this.handleInputErrors(this.state);
+        
+        try {
+            if(pageTitle === 'Login') {
+                if(this.isFormValid(this.state) && validationErrors !== true) {
+                    this.setState({ errors: [], loading: true });
+                    console.log('isFormValid ');
+                    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+                        .then(signedInUser => {
+                            console.log('signedInUser ',signedInUser)
+                            this.setState({
+                                currentUser: signedInUser,
+                                loading: false
+                            });
+                        }) 
+                }
+            }
+            else {
+                if(this.isFormValid(this.state) && username && validationErrors !== true) {
+                    this.setState({ errors: [], loading: true });
+                    console.log('isFormValid ');
+                    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+                        .then(createdUser => {
+                            console.log('createUser ',createdUser)
+                            createdUser.user.updateProfile({
+                                displayName: this.state.username,
+                                photoURL: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`
+                            })
+                            .then(() => {
+                                this.saveUser(createdUser)
+                                    .then(() => {
+                                        console.log('user saved ');
+                                    })
+                                this.setState({ loading: false });
+                            })
+                        })
+                }
+            }
+        } catch (err) {
+            console.error("Authentication Error", err);
+            this.setState({ firebaseError: err, loading: false })
         }
+        console.log('this.setState ', this.state)
+    }
+
+    saveUser = createdUser => {
+        console.log('createdUser', createdUser)
+
+        return this.state.usersRef.child(createdUser.user.uid).set({
+            username: createdUser.user.displayName,
+            avatar: createdUser.user.photoURL
+        });
     }
 
     render() {
-        const { email, password, username, prevLogin, errors } = this.state;
+        const { email, password, username, prevLogin, errors, firebaseError } = this.state;
 
         const isLogin = this.props.match.path === '/login';
         const pageTitle = isLogin ? 'Login' : 'Sign Up';
         const linkTitle = isLogin ? 'Sign Up' : 'Login';
         const descriptionLink = isLogin ? '/signup': '/login';
         const descriptionText = isLogin ? 'Don’t have an account?' : 'Have an account?';
+        const descriptionSubtext = isLogin ? 'or use your account' : 'or use your email for registration';
 
         return (
             <div className="Auth-container">
                 <form className="Auth-form" onSubmit={this.handleSubmit}>
-                    <h1 className="Auth-form__title">Login</h1>
+                    <h1 className="Auth-form__title">{pageTitle}</h1>
                     <div className="Auth-form__social-container">
-                        <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
                         <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                        <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
                         <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
                     </div>
-                    <span>or use your account</span>
+                    <span>{descriptionSubtext}</span>
  
                     {pageTitle !== 'Login' && (
                         <input
                             className="Auth-form__input"
                             onChange={this.handleChange}
                             value={username}
-                            name="name"
+                            name="username"
                             type="text"
                             placeholder="Username"
                             autoComplete="off"
                         />
+                        
                     )}
+                     { errors.username && <p className="Auth-error">{ errors.username }</p>}
 
                     <input 
                         className="Auth-form__input"
@@ -127,6 +199,7 @@ export class Auth extends Component {
                     />
 
                     { errors.password && <p className="Auth-error">{ errors.password }</p>}
+                    {/* {firebaseError && <p className="Auth-error">{firebaseError}</p>} */}
 
                     <div className="Auth-checkbox">
                         {pageTitle === 'Login' && (
