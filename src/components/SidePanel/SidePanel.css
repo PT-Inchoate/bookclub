@@ -1,0 +1,51 @@
+.SidePanel-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 2rem 0;
+}
+
+.SidePanel-logo {
+    text-align: center;
+}
+
+.SidePanel-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SidePanel-profile__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.SidePanel-profile__info {
+    margin-left: 1rem;
+}
+
+.SidePanel-nav {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 3.5rem;
+    font-size: 1.4rem;
+    list-style: none;
+}
+
+.SidePanel-nav__item {
+
+}
+
+.SidePanel-nav__link {
+
+}
+
+.SidePanel-logout {
+    margin-top: auto;
+}
