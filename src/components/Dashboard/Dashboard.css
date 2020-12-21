@@ -1,0 +1,14 @@
+.Dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.Dashboard-navigation {
+    flex: 0 0 20%;
+    background: #C8E1FD;
+}
+
+.Dashboard-view {
+    background: #FF5757;
+    flex: 0 0 80%;
+}
