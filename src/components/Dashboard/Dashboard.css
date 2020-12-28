@@ -1,14 +1,23 @@
 .Dashboard-container {
     display: flex;
     height: 100vh;
-}
-
-.Dashboard-navigation {
-    flex: 0 0 20%;
-    background: #C8E1FD;
+    position: relative;
 }
 
 .Dashboard-view {
-    background: #FF5757;
-    flex: 0 0 80%;
+    flex: 1; display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    padding: 3rem 4rem;
+    background: #F5F9FD;
+    /* color: #313232; */
+}
+
+.Dashboard-user {
+    background: #fff;
+    /* background-color: rgb(246,238,226); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

@@ -18,7 +18,7 @@ class App extends Component {
             console.log('that user', user)
             if(user) {
                 this.props.setUser(user);
-                this.props.history.push('/');
+                this.props.history.push('/');                
             }
             else {
                 this.props.history.push('/login');
@@ -29,13 +29,13 @@ class App extends Component {
 
     render() {
         return (
-            <div className="container">
+            // <div className="container">
                 <Switch>
                     <Route exact path="/" component={Dashboard} />
                     <Route exact path="/login" component={Auth} />
                     <Route exact path="/signup" component={Auth} /> 
                 </Switch>
-            </div>
+            // </div>
         )
     }
 }

@@ -15,40 +15,37 @@ class SidePanel extends Component {
     }
 
     render() {
-        return (
-            <nav className="SidePanel-container">
-                <div class="SidePanel-data">
-                    <div class="SidePanel-logo">
-                        <img src={logo} alt="profile_pic"/>
-                    </div>
+        console.log("side currentUser ", this.props.currentUser)
+        const { currentUser } = this.props;
+        // active - props.match
 
-                    <div class="SidePanel-profile">
-                        <div class="SidePanel-profile__avatar">
-                            <img src={logo} alt="profile_pic"/>
-                        </div>
-                        <div class="SidePanel-profile__info">
-                            <p class="profile_name">Alex John</p>
-                        </div>
-                    </div>  
-                </div> 
+        return (
+            <div className="SidePanel-container">
+                <div className="SidePanel-logo">
+                    <img src={logo} alt="profile_pic"/>
+                </div>
 
                 <ul className="SidePanel-nav">
                     <li className="SidePanel-nav__item">
+                        <i className="SidePanel-nav__icon fas fa-columns"></i>
                         <Link to="/" className="SidePanel-nav__link">
                             Dashboard
                         </Link>
                     </li>
                     <li className="SidePanel-nav__item">
+                        <i className="SidePanel-nav__icon fas fa-users"></i>
                         <Link to="/" className="SidePanel-nav__link">
                             My Clubs
                         </Link>
                     </li>
                     <li className="SidePanel-nav__item">
+                        <i className="SidePanel-nav__icon fas fa-chart-bar"></i>
                         <Link to="/" className="SidePanel-nav__link">
                             My Statistics
                         </Link>
                     </li>
                     <li className="SidePanel-nav__item">
+                        <i className="SidePanel-nav__icon fas fa-book"></i>
                         <Link to="/" className="SidePanel-nav__link">
                             My Reads
                         </Link>
@@ -56,9 +53,18 @@ class SidePanel extends Component {
                 </ul>
 
                 <div className="SidePanel-logout">
-                    <button onClick={this.handleLogout}>Log Out</button>
-                </div>
-            </nav>
+                    <div className="SidePanel-profile__avatar">
+                        <img src={currentUser.photoURL} className="SidePanel-profile__avatar-image" alt="profile_pic"/>
+                    </div>
+                    <div className="SidePanel-profile__info">
+                        <div className="SidePanel-profile__name">{currentUser.displayName}</div>
+                        
+                        <div className="SidePanel-profile__logout"
+                        onClick={this.handleLogout}>Logout
+                        </div>
+                    </div>
+                </div> 
+            </div>
         )
     }
 }

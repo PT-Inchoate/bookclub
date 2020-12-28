@@ -43,6 +43,10 @@ body {
   background:#ffffff;
 }
 
+#root { 
+
+}
+
 input[type=text] {
   font-family: 'Mulish', sans-serif;
 }
@@ -169,8 +173,8 @@ a {
 }
 
 /* LAYOUT */
-.container {
+/* .container {
   width: 90%;
   max-width: 1300px;
   margin: 0 auto;
-}
+} */
