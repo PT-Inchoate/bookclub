@@ -119,13 +119,14 @@ export class Auth extends Component {
                             displayName: this.state.username,
                             photoURL: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`
                         })
-                        .then(() => {
-                            this.saveUser(createdUser)
-                                .then(() => {
-                                    console.log('user saved ');
-                                })
-                            this.setState({ loading: false });
-                        })
+                        // .then(() => {
+                        //     this.state.usersRef.child(createdUser.user.uid).set({
+                        //         username: createdUser.user.displayName,
+                        //         avatar: createdUser.user.photoURL
+                        //     });
+
+                        //     this.setState({ currentUser: createdUser, loading: false });
+                        // })
                     })
                     .catch(err => {
                         console.error("Authentication Error", err.message);
@@ -138,12 +139,12 @@ export class Auth extends Component {
         console.log('this.setState ', this.state)
     }
 
-    saveUser = createdUser => {
-        return this.state.usersRef.child(createdUser.user.uid).set({
-            username: createdUser.user.displayName,
-            avatar: createdUser.user.photoURL
-        });
-    }
+    // saveUser = createdUser => {
+    //     return this.state.usersRef.child(createdUser.user.uid).set({
+    //         username: createdUser.user.displayName,
+    //         avatar: createdUser.user.photoURL
+    //     });
+    // }
 
     render() {
         const { email, password, username, prevLogin, errors, firebaseError } = this.state;
