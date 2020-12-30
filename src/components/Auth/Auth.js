@@ -92,10 +92,8 @@ export class Auth extends Component {
         if(pageTitle === 'Login') {
             if(this.isFormValid(this.state) && validationErrors !== true) {
                 this.setState({ errors: [], loading: true });
-                console.log('isFormValid ');
                 firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
                     .then(signedInUser => {
-                        console.log('signedInUser ',signedInUser)
                         this.setState({
                             currentUser: signedInUser,
                             loading: false
@@ -111,35 +109,24 @@ export class Auth extends Component {
         else {
             if(this.isFormValid(this.state) && username && validationErrors !== true) {
                 this.setState({ errors: [], loading: true });
-                console.log('isFormValid ');
                 firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-                    .then(createdUser => {
-                        console.log('createUser ',createdUser)
-                        createdUser.user.updateProfile({
-                            displayName: this.state.username,
-                            photoURL: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`
-                        })
-                        // .then(() => {
-                        //     this.state.usersRef.child(createdUser.user.uid).set({
-                        //         username: createdUser.user.displayName,
-                        //         avatar: createdUser.user.photoURL
-                        //     });
-
-                        //     this.setState({ currentUser: createdUser, loading: false });
-                        // })
-                    })
-                    .catch(err => {
-                        console.error("Authentication Error", err.message);
-                        let firebaseError = err.message.slice(0, err.message.indexOf('.')+1) + ' Please try again';
-                        this.setState({ firebaseError, loading: false });
+                .then(createdUser => {
+                    this.state.usersRef.child(createdUser.user.uid).set({
+                        username: this.state.username,
+                        avatar: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`
                     });
+                })
+                .catch(err => {
+                    console.error("Authentication Error", err.message);
+                    let firebaseError = err.message.slice(0, err.message.indexOf('.')+1) + ' Please try again';
+                    this.setState({ firebaseError, loading: false });
+                });
             }
         }
-
-        console.log('this.setState ', this.state)
     }
 
     // saveUser = createdUser => {
+    //     console.log('createUser ',createdUser)
     //     return this.state.usersRef.child(createdUser.user.uid).set({
     //         username: createdUser.user.displayName,
     //         avatar: createdUser.user.photoURL

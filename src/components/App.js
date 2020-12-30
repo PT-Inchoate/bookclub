@@ -15,10 +15,19 @@ class App extends Component {
     componentDidMount() {
         //redirecting exsting user
         firebase.auth().onAuthStateChanged(user => {
-            console.log('that user', user)
             if(user) {
-                this.props.setUser(user);
-                this.props.history.push('/');                
+                let allUserData;
+                const db = firebase.firestore();
+
+                firebase.database().ref('users').child(user.uid).once('value')
+                .then((data) => {
+                    let fetchedData = data.val()
+
+                    allUserData = {...fetchedData, ...user};
+                    this.props.setUser(allUserData);
+                    this.props.history.push('/');  
+                })
+            
             }
             else {
                 this.props.history.push('/login');
@@ -29,13 +38,11 @@ class App extends Component {
 
     render() {
         return (
-            // <div className="container">
-                <Switch>
-                    <Route exact path="/" component={Dashboard} />
-                    <Route exact path="/login" component={Auth} />
-                    <Route exact path="/signup" component={Auth} /> 
-                </Switch>
-            // </div>
+            <Switch>
+                <Route exact path="/" component={Dashboard} />
+                <Route exact path="/login" component={Auth} />
+                <Route exact path="/signup" component={Auth} /> 
+            </Switch>
         )
     }
 }

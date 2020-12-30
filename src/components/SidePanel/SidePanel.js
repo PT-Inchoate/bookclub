@@ -54,10 +54,10 @@ class SidePanel extends Component {
 
                 <div className="SidePanel-logout">
                     <div className="SidePanel-profile__avatar">
-                        <img src={currentUser.photoURL} className="SidePanel-profile__avatar-image" alt="profile_pic"/>
+                        <img src={currentUser.avatar} className="SidePanel-profile__avatar-image" alt="profile_pic"/>
                     </div>
                     <div className="SidePanel-profile__info">
-                        <div className="SidePanel-profile__name">{currentUser.displayName}</div>
+                        <div className="SidePanel-profile__name">{currentUser.username}</div>
                         
                         <div className="SidePanel-profile__logout"
                         onClick={this.handleLogout}>Logout
