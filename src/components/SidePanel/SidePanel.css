@@ -8,8 +8,14 @@
 }
 
 .SidePanel-logo {
-    width: 20%;
+    /* width: 20%; */
     margin: 0 auto;
+}
+
+.SidePanel-logo a {
+    display: flex;
+    align-items: baseline;
+    color: #393550;
 }
 
 .SidePanel-nav {
@@ -36,6 +42,10 @@
 
 .SidePanel-nav__link {
     color: #d0d2d4;
+}
+
+.SidePanel-nav__link--active {
+    color: #5A6FA0;
 }
 
 li:hover a,

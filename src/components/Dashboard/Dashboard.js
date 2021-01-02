@@ -41,17 +41,20 @@ class Dashboard extends Component {
                 : (
                     !currentUser.email ?
                     <LandingPage /> :
-                    <div className="Dashboard-container">
-                        <SidePanel currentUser={currentUser}/>
-                        <div className="Dashboard-view">
-                            <div className="Dashboard-user">                       
+                    // <div className="Dashboard-container">
+                    //     <SidePanel currentUser={currentUser}/>
+                        // <div className="Dashboard-view">
+                            <div className="Dashboard-container">                       
                                 <div style={{color: "rgb(244,89,89)"}}>
                                     Bookclub
                                 </div>
                                 <div>Hi, {currentUser.username}!</div>
+
+                                <div></div>
+                                <div></div>
                             </div>
-                        </div>
-                    </div>
+                        // </div>
+                    // </div>
                 )
     }
 }

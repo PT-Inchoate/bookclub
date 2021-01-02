@@ -125,14 +125,6 @@ export class Auth extends Component {
         }
     }
 
-    // saveUser = createdUser => {
-    //     console.log('createUser ',createdUser)
-    //     return this.state.usersRef.child(createdUser.user.uid).set({
-    //         username: createdUser.user.displayName,
-    //         avatar: createdUser.user.photoURL
-    //     });
-    // }
-
     render() {
         const { email, password, username, prevLogin, errors, firebaseError } = this.state;
         const isLogin = this.props.match.path === '/login';
