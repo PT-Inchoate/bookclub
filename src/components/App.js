@@ -29,7 +29,7 @@ class App extends Component {
 
                     allUserData = {...fetchedData, ...user};
                     this.props.setUser(allUserData);
-                    this.props.history.push('/');  
+                    // this.props.history.push('/');  
                 })
             }
             else {
