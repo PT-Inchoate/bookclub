@@ -98,6 +98,7 @@ export class Auth extends Component {
                             currentUser: signedInUser,
                             loading: false
                         });
+                        this.props.history.push('/')
                     })
                     .catch(err => {
                         console.error("Authentication Error", err.message);
@@ -115,6 +116,7 @@ export class Auth extends Component {
                         username: this.state.username,
                         avatar: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`
                     });
+                    this.props.history.push('/')
                 })
                 .catch(err => {
                     console.error("Authentication Error", err.message);

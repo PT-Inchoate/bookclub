@@ -29,7 +29,8 @@ class App extends Component {
 
                     allUserData = {...fetchedData, ...user};
                     this.props.setUser(allUserData);
-                    // this.props.history.push('/');  
+                    // console.log('this.props.history -----> ', this.props.location.pathname)
+                    this.props.history.push(this.props.location.pathname);  // currently active path
                 })
             }
             else {
@@ -41,7 +42,7 @@ class App extends Component {
 
     render() {
         const {isLoggedIn , currentUser } = this.props;
-        console.log("this.props logg ", this.props)
+        // console.log("this.props logg ", this.props)
 
         // default routes
         let routes = (
