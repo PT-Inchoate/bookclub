@@ -16,6 +16,7 @@ class PersonalReading extends Component {
     }
 
     render() {
+        // if do search else show popular books and recommendations (when mounted)
         // list of books + progress + clickble books for more info
 
         return (

@@ -9,6 +9,8 @@ import Dashboard from './Dashboard/Dashboard';
 import Statistics from './Statistics/Statistics';
 import Club from './Club/Club';
 import PersonalReading from './PersonalReading/PersonalReading';
+import SingleBook from './SingleBook/SingleBook';
+
 
 import { setUser, clearUser } from './../store';
 import firebase from '../firebase';
@@ -62,6 +64,7 @@ class App extends Component {
                         <Route exact path="/reads" component={PersonalReading} />
                         <Route exact path="/clubs" component={Club} />
                         <Route exact path="/stats" component={Statistics} />
+                        <Route exact path="/books/:id" component={SingleBook} />
                     </Switch>
                 </div>
             );

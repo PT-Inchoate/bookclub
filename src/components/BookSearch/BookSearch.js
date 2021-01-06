@@ -28,14 +28,11 @@ class BookSearch extends Component {
             this.setState({
                 books: res.data.items
             })
-            console.log("this.state  ", this.state)
         })
         .catch(err => console.error(err))
     }
 
     render() {
-        // if do search else show popular books and recommendations (when mounted)
-
         console.log("this.state books ", this.state.books)
         return (
             <div className="container">

@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 import './BookList.css';
 
 const BookList = (props) => {
     // displays book search results
     return (
-        <div className="list"> {
+        <div className="BookList-container"> {
             props.books.map(book => {
             
                 let image 
@@ -16,11 +17,22 @@ const BookList = (props) => {
                 }
                 
             return (
-                <div key={book.id}>
-                    <div>{book.volumeInfo.title}</div>
-                    <div>{book.volumeInfo.authors[0]}</div>
-                    <img src={image}/>
-                </div>
+                <Link to={{
+                    pathname: `/books/${book.id}`,
+                    state: {book}
+                }} 
+                key={book.id} 
+                className="BookList-item"
+                >
+                    <div className="BookList-item__image">
+                        <img src={image}/>
+                    </div>
+
+                    <div>
+                        <div>{book.volumeInfo.title}</div>
+                        <div>{book.volumeInfo.authors[0]}</div>
+                    </div>
+                </Link>
             )
             })
         }

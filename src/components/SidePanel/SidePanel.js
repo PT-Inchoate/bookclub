@@ -21,10 +21,10 @@ class SidePanel extends Component {
         // active nav link
         const { location } = this.props;
 
-        const dashboardClass = location.pathname === "/" ? "SidePanel-nav__link--active" : "SidePanel-nav__link";
-        const clubClass = location.pathname.match(/^\/clubs/) ? "SidePanel-nav__link--active" : "SidePanel-nav__link";
-        const statsClass = location.pathname.match(/^\/stats/) ? "SidePanel-nav__link--active" : "SidePanel-nav__link";
-        const readsClass = location.pathname.match(/^\/reads/) ? "SidePanel-nav__link--active" : "SidePanel-nav__link";
+        const dashboardClass = location.pathname === "/" ? "SidePanel-nav__link--active" : "SidePanel-nav__item";
+        const clubClass = location.pathname.match(/^\/clubs/) ? "SidePanel-nav__link--active" : "SidePanel-nav__item";
+        const statsClass = location.pathname.match(/^\/stats/) ? "SidePanel-nav__link--active" : "SidePanel-nav__item";
+        const readsClass = location.pathname.match(/^\/reads/) ? "SidePanel-nav__link--active" : "SidePanel-nav__item";
 
         return (
             <div className="SidePanel-container">
@@ -35,27 +35,27 @@ class SidePanel extends Component {
                 </div>
 
                 <ul className="SidePanel-nav">
-                    <li className="SidePanel-nav__item">
+                    <li className={dashboardClass}>
                         <i className="SidePanel-nav__icon fas fa-columns"></i>
-                        <Link to="/" className={dashboardClass}>
+                        <Link to="/" className="SidePanel-nav__link">
                             Dashboard
                         </Link>
                     </li>
-                    <li className="SidePanel-nav__item">
+                    <li className={clubClass}>
                         <i className="SidePanel-nav__icon fas fa-users"></i>
-                        <Link to="/clubs" className={clubClass}>
+                        <Link to="/clubs" className="SidePanel-nav__link">
                             My Clubs
                         </Link>
                     </li>
-                    <li className="SidePanel-nav__item">
+                    <li className={statsClass}>
                         <i className="SidePanel-nav__icon fas fa-chart-bar"></i>
-                        <Link to="/stats" className={statsClass}>
+                        <Link to="/stats" className="SidePanel-nav__link">
                             My Statistics
                         </Link>
                     </li>
-                    <li className="SidePanel-nav__item">
+                    <li className={readsClass}>
                         <i className="SidePanel-nav__icon fas fa-book"></i>
-                        <Link to="/reads" className={readsClass}>
+                        <Link to="/reads" className="SidePanel-nav__link">
                             My Reads
                         </Link>
                     </li >
