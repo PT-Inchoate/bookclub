@@ -1,4 +1,4 @@
-.Dashboard-container {
+/* .Dashboard-container {
     display: flex;
     height: 100vh;
     position: relative;
@@ -10,10 +10,9 @@
     max-height: 100vh;
     padding: 3rem 4rem;
     background: #F5F9FD;
-    /* color: #313232; */
-}
+} */
 
-.Dashboard-user {
+.Dashboard-container {
     background: #fff;
     /* background-color: rgb(246,238,226); */
     display: flex;

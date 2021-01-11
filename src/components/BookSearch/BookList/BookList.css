@@ -1,0 +1,38 @@
+.BookList-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.BookList-item {
+    /* width: 50%; */
+
+    display: flex;
+    align-items: center;
+    border: 1px solid;
+    padding: 3rem 0;
+    flex: 0 32%;
+    margin-bottom: 2%;
+}
+
+@media only screen and (max-width: 1095px) {
+    .BookList-item { 
+        flex: 0 0 50%;
+    }
+}
+
+@media only screen and (max-width: 755px) {
+    .BookList-item { 
+        flex: 100%;
+    }
+}
+
+.BookList-item__image {
+    display: flex;
+    width: 25%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
