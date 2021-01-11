@@ -1,0 +1,42 @@
+.SingleBook-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SingleBook-container__title {
+    padding: 1rem 0 2rem;
+}
+
+.SingleBook-title {
+    padding: 1rem;
+}
+
+.SingleBook-image {
+    display: flex;
+    padding: 1rem;
+    border: 1px solid;
+}
+
+.SingleBook-rating {
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.SingleBook-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.SingleBook-info > div {
+    padding: 1rem;
+}
+
+.SingleBook-description {
+    padding: 1rem;
+}
+
+.SingleBook-borrow {
+    padding: 1rem;
+}

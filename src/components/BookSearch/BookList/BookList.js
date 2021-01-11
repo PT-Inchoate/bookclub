@@ -30,7 +30,7 @@ const BookList = (props) => {
 
                     <div>
                         <div>{book.volumeInfo.title}</div>
-                        <div>{book.volumeInfo.authors[0]}</div>
+                        <div>{book.volumeInfo.authors ? book.volumeInfo.authors[0] : "Author is Unknown"  }</div>
                     </div>
                 </Link>
             )
